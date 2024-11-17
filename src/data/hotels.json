@@ -2,7 +2,7 @@
 	"hotels": [
 		{
 			"name": "Marina Inn",
-			"country": "Греция",
+			"country": "Австралия",
 			"address": "Фалираки, Родос, Греция",
 			"stars": 4,
 			"type": "Отель",
@@ -45,7 +45,7 @@
 		},
 		{
 			"name": "Sunny Appartments",
-			"country": "Греция",
+			"country": "Австрия",
 			"address": "Родос, Родос, Греция",
 			"stars": 2,
 			"type": "Апартаменты",
