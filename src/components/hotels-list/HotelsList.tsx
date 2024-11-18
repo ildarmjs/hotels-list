@@ -1,33 +1,41 @@
-import { FC } from 'react'
-import { Button, Card, Flex, Image, Typography } from 'antd'
-import { HotelsCard } from './hotels-card/HotelsCard'
+import { FC, useState } from 'react'
 import { useHotelContext } from '../../context/HotelsContext'
-import notFoundImage from '/public/image/not-found.png'
-const { Title, Text } = Typography
+import { HotelsCard } from './hotels-card/HotelsCard'
+import { NoHotelsFound } from '../no-hotels-found/NoHotelsFound'
+import { PaginationControls } from '../pagination-controls/PagintaionControls'
+
+const PAGE_SIZE = 3
 
 export const HotelsList: FC = () => {
 	const { filteredHotels, clearFilters } = useHotelContext()
+	const [currentPage, setCurrentPage] = useState(1)
+
+	const indexOfLastHotel = currentPage * PAGE_SIZE
+	const indexOfFirstHotel = indexOfLastHotel - PAGE_SIZE
+	const currentHotels = filteredHotels.slice(
+		indexOfFirstHotel,
+		indexOfLastHotel
+	)
+
+	const handlePageChange = (page: number) => {
+		setCurrentPage(page)
+	}
+
 	return (
 		<div style={{ height: '100vh' }}>
 			{filteredHotels.length === 0 ? (
-				<Card>
-					<Flex justify='center' align='center' vertical>
-						<Image src={notFoundImage} preview={false} />
-						<Title level={4}>По данным параметрам ничего не найдено</Title>
-						<Text type='secondary'>
-							Попробуйте изменить параметры фильтрации или вернуться в общий
-							каталог
-						</Text>
-						<br />
-						<Button onClick={clearFilters} type='primary'>
-							Очистить фильтр
-						</Button>
-					</Flex>
-				</Card>
+				<NoHotelsFound onClearFilters={clearFilters} />
 			) : (
-				filteredHotels.map(hotel => (
-					<HotelsCard key={hotel.name} hotel={hotel} />
-				))
+				<>
+					{currentHotels.map(hotel => (
+						<HotelsCard key={hotel.name} hotel={hotel} />
+					))}
+					<PaginationControls
+						currentPage={currentPage}
+						total={filteredHotels.length}
+						onPageChange={handlePageChange}
+					/>
+				</>
 			)}
 		</div>
 	)
