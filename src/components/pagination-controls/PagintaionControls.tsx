@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Pagination, Flex } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import styles from './PaginationControl.module.scss'
 
 const PAGE_SIZE = 3
 
@@ -22,14 +23,14 @@ export const PaginationControls: FC<PaginationControlsProps> = ({
 	) => {
 		if (type === 'prev') {
 			return (
-				<a>
+				<a className={styles.link}>
 					<LeftOutlined /> Назад
 				</a>
 			)
 		}
 		if (type === 'next') {
 			return (
-				<a>
+				<a className={styles.link}>
 					Следующая <RightOutlined />
 				</a>
 			)
@@ -38,7 +39,7 @@ export const PaginationControls: FC<PaginationControlsProps> = ({
 	}
 
 	return (
-		<Flex justify='center' style={{ marginTop: '20px' }}>
+		<Flex justify='center' className={styles.pagination}>
 			<Pagination
 				current={currentPage}
 				total={total}
