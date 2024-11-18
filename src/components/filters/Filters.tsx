@@ -11,7 +11,6 @@ export const Filters: FC = () => {
 			<FiltersSearch />
 			<FiltersType />
 			<FiltersStars />
-			<FiltersStars />
 			<FiltersPrice />
 			<FiltersBtns />
 		</div>
