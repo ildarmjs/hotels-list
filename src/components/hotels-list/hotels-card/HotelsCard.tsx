@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Flex, Image, Space, Typography } from 'antd'
 import { Rate } from 'antd'
 import { Hotels } from '../../../types/hotels'
@@ -11,6 +11,11 @@ interface HotelCardProps {
 }
 
 export const HotelsCard: React.FC<HotelCardProps> = ({ hotel }) => {
+	const [isBooked, setIsBooked] = useState(false)
+
+	const handleBooking = () => {
+		setIsBooked(true)
+	}
 	return (
 		<Card style={{ marginBottom: '20px' }}>
 			<Flex align='center' justify='space-between'>
@@ -23,7 +28,14 @@ export const HotelsCard: React.FC<HotelCardProps> = ({ hotel }) => {
 						<div>Цена за 1 ночь</div>
 					</div>
 
-					<Button size={'large'}>Забронировать</Button>
+					<Button
+						size={'large'}
+						onClick={handleBooking}
+						type={isBooked ? 'default' : 'primary'}
+						disabled={isBooked ? true : false}
+					>
+						{isBooked ? 'Забронировано' : 'Забронировать'}
+					</Button>
 				</Space>
 			</Flex>
 
