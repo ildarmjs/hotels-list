@@ -3,9 +3,8 @@ import { Pagination, Flex } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './PaginationControl.module.scss'
 
-const PAGE_SIZE = 3
-
 interface PaginationControlsProps {
+	pageSize: number
 	currentPage: number
 	total: number
 	onPageChange: (page: number) => void
@@ -14,7 +13,8 @@ interface PaginationControlsProps {
 export const PaginationControls: FC<PaginationControlsProps> = ({
 	currentPage,
 	total,
-	onPageChange
+	onPageChange,
+	pageSize
 }) => {
 	const itemRender = (
 		_: number,
@@ -43,7 +43,7 @@ export const PaginationControls: FC<PaginationControlsProps> = ({
 			<Pagination
 				current={currentPage}
 				total={total}
-				pageSize={PAGE_SIZE}
+				pageSize={pageSize}
 				onChange={onPageChange}
 				showSizeChanger={false}
 				showQuickJumper={false}
