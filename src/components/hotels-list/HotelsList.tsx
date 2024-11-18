@@ -3,6 +3,7 @@ import { useHotelContext } from '../../context/HotelsContext'
 import { HotelsCard } from './hotels-card/HotelsCard'
 import { NoHotelsFound } from '../no-hotels-found/NoHotelsFound'
 import { PaginationControls } from '../pagination-controls/PagintaionControls'
+import styles from './HotelsList.module.scss'
 
 const PAGE_SIZE = 3
 
@@ -22,7 +23,7 @@ export const HotelsList: FC = () => {
 	}
 
 	return (
-		<div style={{ height: '100vh' }}>
+		<div className={styles.list}>
 			{filteredHotels.length === 0 ? (
 				<NoHotelsFound onClearFilters={clearFilters} />
 			) : (
@@ -31,6 +32,7 @@ export const HotelsList: FC = () => {
 						<HotelsCard key={hotel.name} hotel={hotel} />
 					))}
 					<PaginationControls
+						pageSize={PAGE_SIZE}
 						currentPage={currentPage}
 						total={filteredHotels.length}
 						onPageChange={handlePageChange}
