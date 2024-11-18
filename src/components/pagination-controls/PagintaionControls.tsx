@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Button, Pagination, Flex } from 'antd'
+import { Pagination, Flex } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
 const PAGE_SIZE = 3
@@ -15,7 +15,6 @@ export const PaginationControls: FC<PaginationControlsProps> = ({
 	total,
 	onPageChange
 }) => {
-	console.log('currentPage:', currentPage)
 	const itemRender = (
 		_: number,
 		type: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
